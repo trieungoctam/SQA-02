@@ -285,6 +285,8 @@
 								<exclude>com/spring/privateClinicManage/entity/**</exclude>
 								<exclude>com/spring/privateClinicManage/config/**</exclude>
 								<exclude>com/spring/privateClinicManage/PrivateClinicManageApplication.class</exclude>
+								<exclude>com/spring/privateClinicManage/filter/**</exclude>
+								<exclude>com/spring/privateClinicManage/utilities/**</exclude>
 							</excludes>
 						</configuration>
 					</execution>

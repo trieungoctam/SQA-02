@@ -1,5 +1,6 @@
 package com.spring.privateClinicManage.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -108,4 +109,42 @@ public interface MedicalRegistryListRepository extends JpaRepository<MedicalRegi
 			"WHERE mrl.name = :name ")
 	List<PaymentHistoryDto> statsPaymentPhase2History(@Param("name") String name);
 
+	// Thống kê số lượng phiếu khám bệnh theo trạng thái
+	@Query("SELECT s.status, COUNT(mrl.id) " +
+			"FROM MedicalRegistryList mrl " +
+			"JOIN mrl.statusIsApproved s " +
+			"WHERE YEAR(mrl.createdDate) = :year " +
+			"GROUP BY s.status")
+	List<Object[]> statsRegistrationsByStatus(@Param("year") Integer year);
+
+	// Thống kê số lượng phiếu khám bệnh theo tháng trong năm
+	@Query("SELECT MONTH(mrl.createdDate), COUNT(mrl.id) " +
+			"FROM MedicalRegistryList mrl " +
+			"WHERE YEAR(mrl.createdDate) = :year " +
+			"GROUP BY MONTH(mrl.createdDate) " +
+			"ORDER BY MONTH(mrl.createdDate)")
+	List<Object[]> statsRegistrationsByMonth(@Param("year") Integer year);
+
+	// Thống kê số lượng phiếu khám bệnh theo ngày trong tháng
+	@Query("SELECT DAY(mrl.createdDate), COUNT(mrl.id) " +
+			"FROM MedicalRegistryList mrl " +
+			"WHERE YEAR(mrl.createdDate) = :year AND MONTH(mrl.createdDate) = :month " +
+			"GROUP BY DAY(mrl.createdDate) " +
+			"ORDER BY DAY(mrl.createdDate)")
+	List<Object[]> statsRegistrationsByDay(@Param("year") Integer year, @Param("month") Integer month);
+
+	// Thống kê số lượng phiếu khám bệnh theo người dùng
+	@Query("SELECT u.name, COUNT(mrl.id) " +
+			"FROM MedicalRegistryList mrl " +
+			"JOIN mrl.user u " +
+			"WHERE YEAR(mrl.createdDate) = :year " +
+			"GROUP BY u.name " +
+			"ORDER BY COUNT(mrl.id) DESC")
+	List<Object[]> statsRegistrationsByUser(@Param("year") Integer year);
+
+	// Thống kê số lượng phiếu khám bệnh theo khoảng thời gian
+	@Query("SELECT COUNT(mrl.id) " +
+			"FROM MedicalRegistryList mrl " +
+			"WHERE mrl.createdDate BETWEEN :startDate AND :endDate")
+	Long countRegistrationsBetweenDates(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }
