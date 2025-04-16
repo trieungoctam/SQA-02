@@ -1,0 +1,2 @@
+Payment:
+    mvn test -Dtest=ApiMOMOPaymentControllerTest,ApiVNPAYPaymentControllerTest,ApiYtaRestControllerCashPaymentTest

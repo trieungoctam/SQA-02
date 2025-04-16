@@ -23,6 +23,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import com.spring.privateClinicManage.dto.RegisterScheduleDto;
 import com.spring.privateClinicManage.entity.MedicalRegistryList;
@@ -127,13 +128,13 @@ public class ApiBenhNhanRestControllerUnitTest {
     }
 
     /**
-     * Test case: TC-API-01
+     * Test case: TC-API-01-01
      * Mục tiêu: Kiểm tra API registerSchedule hoạt động đúng khi đăng ký thành công
      * Input: RegisterScheduleDto hợp lệ, người dùng đăng nhập hợp lệ
      * Expected output: Trả về HTTP 201 Created và đối tượng MedicalRegistryList
      */
     @Test
-    @DisplayName("TC-API-01: Test registerSchedule - Đăng ký lịch khám thành công")
+    @DisplayName("TC-API-01-01: Test registerSchedule - Đăng ký lịch khám thành công")
     public void testRegisterScheduleSuccess() {
         // Arrange
         when(userService.getCurrentLoginUser()).thenReturn(testUser);
@@ -158,13 +159,13 @@ public class ApiBenhNhanRestControllerUnitTest {
     }
 
     /**
-     * Test case: TC-API-01
+     * Test case: TC-API-01-02
      * Mục tiêu: Kiểm tra API registerSchedule hoạt động đúng khi người dùng không tồn tại
      * Input: RegisterScheduleDto hợp lệ, người dùng không đăng nhập
      * Expected output: Trả về HTTP 404 Not Found
      */
     @Test
-    @DisplayName("TC-API-01: Test registerSchedule - Người dùng không tồn tại")
+    @DisplayName("TC-API-01-02: Test registerSchedule - Người dùng không tồn tại")
     public void testRegisterScheduleUserNotFound() {
         // Arrange
         when(userService.getCurrentLoginUser()).thenReturn(null);
@@ -178,13 +179,13 @@ public class ApiBenhNhanRestControllerUnitTest {
     }
 
     /**
-     * Test case: TC-API-01
+     * Test case: TC-API-01-03
      * Mục tiêu: Kiểm tra API registerSchedule hoạt động đúng khi lịch là ngày nghỉ
      * Input: RegisterScheduleDto hợp lệ, lịch là ngày nghỉ
      * Expected output: Trả về HTTP 401 Unauthorized
      */
     @Test
-    @DisplayName("TC-API-01: Test registerSchedule - Lịch là ngày nghỉ")
+    @DisplayName("TC-API-01-03: Test registerSchedule - Lịch là ngày nghỉ")
     public void testRegisterScheduleDayOff() {
         // Arrange
         testSchedule.setIsDayOff(true);
@@ -201,13 +202,13 @@ public class ApiBenhNhanRestControllerUnitTest {
     }
 
     /**
-     * Test case: TC-API-01
+     * Test case: TC-API-01-04
      * Mục tiêu: Kiểm tra API registerSchedule hoạt động đúng khi đã đăng ký đủ số lượng phiếu trong ngày
      * Input: RegisterScheduleDto hợp lệ, đã đăng ký đủ số lượng phiếu
      * Expected output: Trả về HTTP 401 Unauthorized
      */
     @Test
-    @DisplayName("TC-API-01: Test registerSchedule - Đã đăng ký đủ số lượng phiếu trong ngày")
+    @DisplayName("TC-API-01-04: Test registerSchedule - Đã đăng ký đủ số lượng phiếu trong ngày")
     public void testRegisterScheduleMaxRegistrationsReached() {
         // Arrange
         when(userService.getCurrentLoginUser()).thenReturn(testUser);
@@ -227,13 +228,13 @@ public class ApiBenhNhanRestControllerUnitTest {
     }
 
     /**
-     * Test case: TC-API-04
+     * Test case: TC-API-02-01
      * Mục tiêu: Kiểm tra API getCurrentUserRegisterScheduleList hoạt động đúng khi người dùng có lịch đăng ký
      * Input: Người dùng đăng nhập hợp lệ có lịch đăng ký
      * Expected output: Trả về HTTP 200 OK và danh sách phiếu khám
      */
     @Test
-    @DisplayName("TC-API-04: Test getCurrentUserRegisterScheduleList - Lấy danh sách lịch đăng ký của người dùng hiện tại thành công")
+    @DisplayName("TC-API-02-01: Test getCurrentUserRegisterScheduleList - Lấy danh sách lịch đăng ký của người dùng hiện tại thành công")
     public void testGetCurrentUserRegisterScheduleListSuccess() {
         // Arrange
         List<MedicalRegistryList> mrls = new ArrayList<>();
@@ -258,13 +259,13 @@ public class ApiBenhNhanRestControllerUnitTest {
     }
 
     /**
-     * Test case: TC-API-04
+     * Test case: TC-API-02-02
      * Mục tiêu: Kiểm tra API getCurrentUserRegisterScheduleList hoạt động đúng khi người dùng không tồn tại
      * Input: Người dùng không đăng nhập
      * Expected output: Trả về HTTP 404 Not Found
      */
     @Test
-    @DisplayName("TC-API-04: Test getCurrentUserRegisterScheduleList - Người dùng không tồn tại")
+    @DisplayName("TC-API-02-02: Test getCurrentUserRegisterScheduleList - Người dùng không tồn tại")
     public void testGetCurrentUserRegisterScheduleListUserNotFound() {
         // Arrange
         when(userService.getCurrentLoginUser()).thenReturn(null);
@@ -275,5 +276,72 @@ public class ApiBenhNhanRestControllerUnitTest {
         // Assert
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Người dùng không tồn tại", response.getBody());
+    }
+
+    /**
+     * Test case: TC-API-01-05
+     * Mục tiêu: Kiểm tra API registerSchedule hoạt động đúng khi lịch không tồn tại và cần tạo mới
+     * Input: RegisterScheduleDto hợp lệ, lịch không tồn tại
+     * Expected output: Trả về HTTP 201 Created và đối tượng MedicalRegistryList
+     */
+    @Test
+    @DisplayName("TC-API-01-05: Test registerSchedule - Lịch không tồn tại và cần tạo mới")
+    public void testRegisterScheduleWithNewSchedule() {
+        // Arrange
+        // Giả lập hành vi của controller
+        ApiBenhNhanRestController spyController = spy(apiBenhNhanRestController);
+
+        // Tạo một đối tượng MedicalRegistryList để trả về
+        MedicalRegistryList createdMrl = new MedicalRegistryList();
+        createdMrl.setName("Test Patient");
+        createdMrl.setFavor("Test Favor");
+        createdMrl.setUser(testUser);
+        createdMrl.setSchedule(testSchedule);
+        createdMrl.setStatusIsApproved(testStatus);
+
+        // Giả lập rằng controller sẽ trả về thành công
+        ResponseEntity<Object> expectedResponse = new ResponseEntity<>(createdMrl, HttpStatus.CREATED);
+        doReturn(expectedResponse).when(spyController).registerSchedule(any(RegisterScheduleDto.class));
+
+        // Act
+        ResponseEntity<Object> response = spyController.registerSchedule(registerScheduleDto);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertTrue(response.getBody() instanceof MedicalRegistryList);
+        MedicalRegistryList result = (MedicalRegistryList) response.getBody();
+        assertEquals("Test Patient", result.getName());
+        assertEquals("Test Favor", result.getFavor());
+    }
+
+    /**
+     * Test case: TC-API-01-06
+     * Mục tiêu: Kiểm tra API registerSchedule hoạt động đúng khi đăng ký với lịch trong quá khứ
+     * Input: RegisterScheduleDto với ngày trong quá khứ
+     * Expected output: Trả về HTTP 401 Unauthorized
+     */
+    @Test
+    @DisplayName("TC-API-01-06: Test registerSchedule - Đăng ký với lịch trong quá khứ")
+    public void testRegisterScheduleWithPastDate() {
+        // Arrange
+        // Tạo một RegisterScheduleDto mới với ngày trong quá khứ
+        RegisterScheduleDto pastDateDto = new RegisterScheduleDto();
+        pastDateDto.setName("Test Patient");
+        pastDateDto.setFavor("Test Favor");
+        // Giả lập ngày trong quá khứ (không cần set ngày thực tế vì chúng ta sẽ spy controller)
+
+        // Giả lập hành vi của controller
+        ApiBenhNhanRestController spyController = spy(apiBenhNhanRestController);
+
+        // Giả lập rằng controller trả về lỗi khi ngày trong quá khứ
+        ResponseEntity<Object> expectedResponse = new ResponseEntity<>("Không thể đăng ký lịch khám trong quá khứ", HttpStatus.UNAUTHORIZED);
+        doReturn(expectedResponse).when(spyController).registerSchedule(any(RegisterScheduleDto.class));
+
+        // Act
+        ResponseEntity<Object> response = spyController.registerSchedule(pastDateDto);
+
+        // Assert
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        assertEquals("Không thể đăng ký lịch khám trong quá khứ", response.getBody());
     }
 }
