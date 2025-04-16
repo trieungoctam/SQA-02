@@ -1,0 +1,32 @@
+.form-login {
+  width: 50%;
+  height: 50%;
+  background-color: #eff7ff;
+  border: none;
+}
+
+.social-login {
+  .google-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background-color: white;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .google-btn img {
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .google-btn:hover {
+    background-color: #f8f8f8;
+  }
+}

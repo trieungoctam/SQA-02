@@ -1,0 +1,18 @@
+.notification-container .dropdown-item {
+    padding: 10px;
+  }
+  
+  .dropdown-item img {
+    border-radius: 50%;
+  }
+  
+  .dropdown-item strong {
+    display: block;
+    font-size: 14px;
+  }
+  
+  .dropdown-item p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+  }

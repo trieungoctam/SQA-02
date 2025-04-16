@@ -1,0 +1,107 @@
+body {
+    font-family: 'lato', sans-serif;
+  }
+  .container-user-processing-list {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+  
+  .container-user-processing-list h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+    small {
+      font-size: 0.5em;
+    }
+  }
+  
+  .container-user-processing-list .responsive-table {
+    li {
+      border-radius: 3px;
+      padding: 25px 30px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      /* margin-bottom: 25px; */
+    }
+     .table-header {
+      background-color: #95A5A6;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      text-align: center;
+
+    }
+     .table-row {
+      background-color: #ffffff;
+      box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    }
+    .col-1 {
+      flex-basis: 5%;
+      text-align: center;
+    }
+    .col-2 {
+      flex-basis: 20%;
+      text-align: center;
+
+    }
+    .col-3 {
+      flex-basis: 20%;
+      text-align: center;
+
+    }
+    .col-4 {
+      flex-basis: 15%;
+      text-align: center;
+
+    }
+    .col-5 {
+      flex-basis: 15%;
+      text-align: center;
+
+    }
+    .col-6 {
+        flex-basis: 10%;
+        text-align: center;
+      }
+    .col-7 {
+        flex-basis: 15%;
+        text-align: center;
+    }
+    
+    @media all and (max-width: 767px) {
+      .container-user-processing-list .table-header {
+        display: none;
+      }
+      /* .table-row{
+        
+      } */
+      .container-user-processing-list li {
+        display: block;
+      }
+      .container-user-processing-list .col {
+        
+        flex-basis: 100%;
+        
+      }
+      .container-user-processing-list .col {
+        display: flex;
+        padding: 10px 0;
+        &:before {
+          color: #6C7A89;
+          padding-right: 10px;
+          content: attr(data-label);
+          flex-basis: 50%;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .container-user-processing-list .underline {
+    text-decoration: underline;
+  }

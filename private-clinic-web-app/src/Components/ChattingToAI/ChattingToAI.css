@@ -1,0 +1,67 @@
+.advise-answer-container{
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .header {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+    .form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputGroup label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+      }
+      
+      .inputGroup input,
+      .inputGroup textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+    .button {
+        padding: 10px 20px;
+        background-color:#195a97;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        transition: background-color 0.3s, transform 0.2s;
+        
+        &:hover {
+          opacity: 0.9;
+          transform: scale(1.02); /* Nhấn mạnh hiệu ứng khi hover */
+        }
+      
+        &:active {
+          transform: scale(0.98); /* Tạo hiệu ứng bấm */
+        }
+      
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+      
+
+}

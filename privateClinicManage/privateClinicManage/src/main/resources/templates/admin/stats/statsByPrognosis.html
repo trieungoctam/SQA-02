@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<aside th:insert="~{admin/common/headerAdmin :: admin-header-common}" />
+</head>
+
+<body>
+	<aside th:insert="~{admin/common/adminLeftPanel :: left-panel-common}" />
+
+	<!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+		<!-- Header-->
+		<aside
+			th:insert="~{admin/common/headerRightPanel :: header-rightPanel-common}" />
+		<!-- /#header -->
+		<!-- Content -->
+		<div class="content">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<h2 class="heading  text text-primary text-center m-3">
+									THỐNG KÊ TẦN XUẤT SỬ DỤNG THUỐC THEO NĂM , THÁNG
+								</h2>
+								<form th:action=@{/admin/statsByPrognosisMedicine} class="form-container">
+									<span> <strong> Tháng : </strong> <input type="number" min="1"
+										max="12" name="monthlyPrognosis" th:value="${monthlyPrognosis}">
+									</span> <span><strong> Năm : </strong> <input type="number" min="2000" max="3000"
+										name="yearlyPrognosis" th:value="${yearlyPrognosis}">
+									</span>
+									<button type="submit" class="btn btn-primary">Lọc</button>
+
+								</form>
+								<canvas id="prognosis-stats-chart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.content -->
+		<div class="clearfix"></div>
+		<!-- Footer -->
+		<aside th:insert="~{admin/common/footerAdmin :: footer-admin-common}" />
+
+		<!-- /.site-footer -->
+	</div>
+	<!-- /#right-panel -->
+
+	<!-- Scripts -->
+	<script type="text/javascript">
+	
+	var barColors = ["red", "green","blue","orange","brown"];
+	
+	function getRandomColor() {
+	    const letters = '0123456789ABCDEF';
+	    let color = '#';
+	    for (let i = 0; i < 6; i++) {
+	        color += letters[Math.floor(Math.random() * 16)];
+	    }
+	    return color;
+	}
+	
+	
+	
+	var prognosisMedicineStats = `[[${prognosisMedicineStats}]]`;
+	
+	
+	console.log(prognosisMedicineStats)
+
+ 	prognosisMedicineStats = prognosisMedicineStats
+ 	  .replace(/prognosis=(\d+)/g, '"prognosis":$1')  // Thay prognosis=12 thành "prognosis":12
+ 	  .replace(/medicineName=([^}]+)/g, '"medicineName":"$1"')  // Thay medicineName= và bắt mọi ký tự cho đến dấu ngoặc nhọn đóng
+ 	  .replace(/&amp;/g, '&') // Chuyển đổi &amp; thành &
+ 	  .replace(/'/g, "\\'") // Escape ký tự nháy đơn để tránh lỗi
+ 	  .replace(/\{/g, '{ ') // Thêm khoảng trắng sau dấu ngoặc nhọn mở
+ 	  .replace(/\}/g, ' }'); // Thêm khoảng trắng trước dấu ngoặc nhọn đóng
+ 	
+	
+     prognosisMedicineStats = JSON.parse(prognosisMedicineStats);
+
+	 console.log(prognosisMedicineStats)
+
+	 let labels = [];
+	 let data = [];
+	 
+	 prognosisMedicineStats.forEach(function(s1) {
+	    	labels.push(s1.medicineName)
+			data.push(s1.prognosis)
+	 });
+	 
+	 const backgroundColors = data.map(() => getRandomColor());
+	 
+
+	 function drawChart(ctx,labels, labelDatasets, data) {
+		 new Chart(ctx, {
+		   type: "bar",
+		   data: {
+		     labels: labels,
+		     datasets: [{
+		       data: data,
+		       fill: false,
+		       backgroundColor: backgroundColors,
+		     }]
+		   },
+		   options: {
+		     legend: {display: false}
+		   }
+		 });
+	    }
+	
+	 window.onload = () => {
+	        const ctx1 = document.getElementById('prognosis-stats-chart');
+	        drawChart(ctx1, labels, 'Thống kê tần xuất sử dụng thuốc', data);
+	       
+	}
+		
+	</script>
+
+	<aside th:insert="~{admin/common/scriptCommon :: script-common}" />
+
+</body>
+</html>

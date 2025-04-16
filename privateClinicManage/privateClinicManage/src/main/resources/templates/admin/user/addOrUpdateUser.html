@@ -1,0 +1,199 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<aside th:insert="~{admin/common/headerAdmin :: admin-header-common}" />
+</head>
+
+<body>
+	<aside th:insert="~{admin/common/adminLeftPanel :: left-panel-common}" />
+
+	<!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+		<!-- Header-->
+		<aside
+			th:insert="~{admin/common/headerRightPanel :: header-rightPanel-common}" />
+		<!-- /#header -->
+		<!-- Content -->
+		<div class="content">
+
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<strong th:if="${user.id > 0}">Cập nhật thông tin người</strong> <strong
+							th:if="${user.id == null}">Thêm mới người dùng</strong>
+
+					</div>
+					<div class="card-body card-block">
+						<form th:action="@{/admin/addOrUpdateUser}" method="post"
+							enctype="multipart/form-data" th:object="${user}"
+							class="form-horizontal">
+
+							<input type="hidden" th:field="${user.id}" th:value="${user.id}" />
+							<input type="hidden" th:field="${user.avatar}"
+								th:value="${user.avatar}" />
+
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Họ
+										và tên</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${user.name}" required type="text"
+										id="text-input" name="text-input" placeholder="Name"
+										class="form-control"><small
+										class="form-text text-muted">Họ và tên</small>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="textarea-input" class=" form-control-label">Email</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${user.email}" name="email" id="email"
+										placeholder="Email" class="form-control">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="textarea-input" class=" form-control-label">Giới
+										tính</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<div class="form-check form-check-inline">
+										<input th:field="${user.gender}" class="form-check-input"
+											type="radio" th:checked="${user.gender == 'male'}"
+											name="inlineRadioOptions" id="male" value="male" required />
+										<label class="form-check-label" for="maleGender">Male</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input th:field="${user.gender}" class="form-check-input"
+											type="radio" th:checked="${user.gender == 'female'}"
+											name="inlineRadioOptions" id="female" value="female" /> <label
+											class="form-check-label" for="femaleGender">Female</label>
+									</div>
+								</div>
+
+							</div>
+
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Số
+										điện thoại</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${user.phone}" required min="0" type="number"
+										id="text-input" name="text-input" placeholder="Phone"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Địa
+										chỉ</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${user.address}" required type="text"
+										id="text-input" name="text-input" placeholder="Address"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Ngày
+										sinh</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${user.birthday}" required type="date"
+										id="text-input" name="birthday" placeholder="Birthday"
+										class="form-control"
+										th:max="${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}">
+								</div>
+							</div>
+
+							<div th:if="${user.id == null}" class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Mật
+										khẩu</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${user.password}" required type="password"
+										id="text-input" name="text-input" placeholder="Password"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label class=" form-control-label">Trạng thái tài khoản</label>
+								</div>
+								<div class="col col-md-9">
+									<div class="form-check-inline form-check">
+										<label for="inline-checkbox1" class="form-check-label ">
+											<input th:checked="${user.active}" type="checkbox"
+											id="inline-checkbox1" name="active" value="true"
+											class="form-check-input" th:field="${user.active}">
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="file-input" class=" form-control-label">File
+										ảnh đại diện</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input type="file" id="file-input" name="avatarFile"
+										th:attr="required=${user.avatar == null or user.avatar.isEmpty() ? 'required' : null}"
+										class="form-control-file" th:text="${user.avatar}">
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Chức
+										vụ</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<select th:field="${user.role}" required name="selectRole"
+										id="selectLg" class="form-control-lg form-control">
+										<option th:each="r : ${roles}" th:value="${r.id}"
+											th:selected="${user.role == r}" th:text="${r.name}"></option>
+									</select>
+								</div>
+							</div>
+
+							<div class="card-footer">
+								<button type="submit" class="btn btn-primary btn-sm">
+									<i class="fa fa-dot-circle-o"></i> Submit
+								</button>
+								<button type="reset" class="btn btn-danger btn-sm">
+									<i class="fa fa-ban"></i> Reset
+								</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<!-- /.content -->
+		<div class="clearfix"></div>
+		<!-- Footer -->
+		<aside th:insert="~{admin/common/footerAdmin :: footer-admin-common}" />
+
+		<!-- /.site-footer -->
+	</div>
+	<!-- /#right-panel -->
+
+	<!-- Scripts -->
+	<aside th:insert="~{admin/common/scriptCommon :: script-common}" />
+
+</body>
+</html>

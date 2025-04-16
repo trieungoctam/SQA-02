@@ -1,0 +1,54 @@
+name: privateclinicmanageproject 
+
+services:
+  mysql:
+    image: davidd071003/privateclinicmanagerepository:database
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: privateclinicmanage
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+   
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network3
+
+  spring-backend:
+    build:
+      context: '.'
+    image: davidd071003/privateclinicmanagerepository:backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/privateclinicmanage
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - TZ=Asia/Ho_Chi_Minh
+      - spring.jpa.properties.hibernate.boot.allow_jdbc_metadata_access=false
+      - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+    ports:
+      - "8888:8888"
+    depends_on:
+      - mysql
+    networks:
+      - app-network3
+
+  reactjs-frontend:
+    image: davidd071003/privateclinicmanagerepository:frontend
+    environment:
+      REACT_APP_BASE_URL: http://localhost:8888
+    ports:
+      - "3000:3000"
+    depends_on:
+      - spring-backend
+      - mysql
+    networks:
+      - app-network3
+
+  
+networks:
+  app-network3:
+
+volumes:
+  db_data: {}
