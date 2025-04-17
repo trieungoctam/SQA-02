@@ -11,4 +11,6 @@ public interface PrescriptionItemsService {
 
 	List<PrescriptionItems> findByMedicalExamination(MedicalExamination medicalExamination);
 
+	PrescriptionItems findById(Integer id);
+
 }
