@@ -1,0 +1,19 @@
+
+.footer{
+    background-color: #23242a;
+    position: 'fixed';
+    left: 0;
+    bottom: 0;
+    width: '100%';
+    text-align: 'center';
+    padding: '10px 0';
+}
+
+.form-notch-leading {
+    width: 9px;
+}
+
+.form-notch-middle{
+    width: 48.8px;
+}
+

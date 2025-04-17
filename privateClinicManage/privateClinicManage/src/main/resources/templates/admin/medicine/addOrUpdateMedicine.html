@@ -1,0 +1,164 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<aside th:insert="~{admin/common/headerAdmin :: admin-header-common}" />
+</head>
+
+<body>
+	<aside th:insert="~{admin/common/adminLeftPanel :: left-panel-common}" />
+
+	<!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+		<!-- Header-->
+		<aside
+			th:insert="~{admin/common/headerRightPanel :: header-rightPanel-common}" />
+		<!-- /#header -->
+		<!-- Content -->
+		<div class="content">
+
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<strong th:if="${medicine.id > 0}">Cập nhật thuốc</strong> <strong
+							th:if="${medicine.id == null}">Thêm mới thuốc</strong>
+
+					</div>
+					<div class="card-body card-block">
+						<form th:action="@{/admin/addOrUpdateMedicine}" method="post"
+							th:object="${medicine}" class="form-horizontal">
+
+							<input type="hidden" th:field="${medicine.id}"
+								th:value="${medicine.id}" />
+
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Tên
+										thuốc</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${medicine.name}" required type="text"
+										id="text-input" name="text-input" placeholder="Tên thuốc"
+										class="form-control">
+									<p th:errors="*{name}" class="text-danger"
+										th:if="${#fields.hasErrors('name')}"></p>
+								</div>
+
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Giá
+										bán / 1 đơn vị</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${medicine.price}" required type="number"
+										id="text-input" name="text-input" placeholder="Giá bán"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Số
+										lượng thực hiện mặc định mỗi lần</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${medicine.defaultPerDay}" required
+										type="number" id="text-input" name="text-input"
+										placeholder="Số lượng thực hiện mặc định mỗi lần"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Cách
+										dùng</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<textarea th:field="${medicine.description}" required
+										id="text-input" name="text-input" placeholder="Mô tả ngắn gọn"
+										class="form-control"> </textarea>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label class=" form-control-label">Trạng thái kích hoạt</label>
+								</div>
+								<div class="col col-md-9">
+									<div class="form-check-inline form-check">
+										<label for="inline-checkbox1" class="form-check-label ">
+											<input th:field="${medicine.isActived}"
+											th:checked="${medicine.isActived}" type="checkbox"
+											id="inline-checkbox1" name="isActived" value="true"
+											class="form-check-input">
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Đơn
+										vị thuốc</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<select th:field="${medicine.unitType}" required
+										name="selectUnit" id="selectUnit"
+										class="form-control-lg form-control">
+										<option th:each="u : ${umts}" th:value="${u.id}"
+											th:selected="${medicine.unitType == u}"
+											th:text="${u.unitName}"></option>
+									</select>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Nhóm
+										thuốc</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<select th:field="${medicine.medicineGroup}" required
+										name="selectGroup" id="selectGroup"
+										class="form-control-lg form-control">
+										<option th:each="m : ${medicineGroups}" th:value="${m.id}"
+											th:selected="${medicine.medicineGroup == m}"
+											th:text="${m.groupName}"></option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="card-footer">
+								<button type="submit" class="btn btn-primary btn-sm">
+									<i class="fa fa-dot-circle-o"></i> Submit
+								</button>
+								<button type="reset" class="btn btn-danger btn-sm">
+									<i class="fa fa-ban"></i> Reset
+								</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<!-- /.content -->
+		<div class="clearfix"></div>
+		<!-- Footer -->
+		<aside th:insert="~{admin/common/footerAdmin :: footer-admin-common}" />
+
+		<!-- /.site-footer -->
+	</div>
+	<!-- /#right-panel -->
+
+	<!-- Scripts -->
+	<aside th:insert="~{admin/common/scriptCommon :: script-common}" />
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+spring.application.name=privateClinicManage
+
+# Server port
+server.port=8888
+
+# domain deploy url :
+localhost.front-end.url=http://localhost:3000
+deploy.front-end.url=https://your-frontend-url
+deploy.back-end.url=https://your-backend-url
+
+# Database
+spring.datasource.url=jdbc:mysql://localhost:3307/your_database
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+
+# Default database
+user.avatar.default=https://your-default-avatar-url
+
+# Spring console
+spring.main.banner-mode=off
+logging.level.root=warn
+
+# Thymeleaf config
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+
+# JWT secret key
+spring.jwt.secretkey=your-jwt-secret-key
+
+# Mail properties
+spring.mail.host=smtp.gmail.com
+spring.mail.username=your-email@gmail.com
+spring.mail.password=your-app-password
+spring.mail.port=587
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# Expired Otp timer
+spring.otp.expired-seconds=600
+
+# Cloudinary properties
+cloudinary.cloud-name=your-cloud-name
+cloudinary.api-key=your-api-key
+cloudinary.api-secret=your-api-secret
+
+# Twilio properties
+TWILIO_ACCOUNT_SID=your-account-sid
+TWILIO_AUTH_TOKEN=your-auth-token
+TWILIO_PHONE=your-phone-number
+
+# Max value
+register_schedule_per_day_max=4
+user_register_list_pagesize=3
+
+# Font path
+spring.fonts.fontvuArialFile=path-to-your-font
+spring.fonts.fontvuArialBoldFile=path-to-your-bold-font
+
+# PDF Location
+spring.pdf.location=path-to-pdf-location
+
+# VNPAY Config
+vnp_PayUrl=https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+vnp_ReturnUrl=your-return-url
+vnp_TmnCode=your-tmn-code
+secretKey=your-secret-key
+vnp_ApiUrl=https://sandbox.vnpayment.vn/merchant_webapi/api/transaction
+
+# MOMO Config
+momo_partnerCode=your-partner-code
+momo_accessKey=your-access-key
+momo_secretKey=your-secret-key
+momo_redirectUrl=your-redirect-url
+momo_ApiUrl=https://test-payment.momo.vn/v2/gateway/api/create
+
+# Web Socket Config
+server.servlet.session.timeout=1d
+
+# multipart request
+spring.servlet.multipart.enabled=true
+spring.servlet.multipart.max-file-size=500MB
+spring.servlet.multipart.max-request-size=500MB
+
+# Spring size request header
+server.max-http-request-header-size=10MB
+
+# Coze Config
+COZE_API_TOKEN=your-coze-api-token
+COZE_SPACE_ID=your-coze-space-id
+COZE_BOT_ID=your-coze-bot-id
+COZE_COM_BASE_URL=https://api.coze.com 

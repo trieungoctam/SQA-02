@@ -1,0 +1,16 @@
+.register-form-container{
+    background: linear-gradient(to right, #def0e2, #e2efdb, #e1fce3);
+    border-radius: 20px;
+}
+
+.bt-register {
+    background-color: #88e8e4;
+    border-radius: 100px
+}
+
+.readonly {
+    background-color: #f8f9fa; 
+    border: 1px solid #ced4da;
+    cursor: not-allowed; 
+    pointer-events: none;
+  }
