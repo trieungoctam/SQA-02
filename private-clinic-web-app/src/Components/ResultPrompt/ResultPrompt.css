@@ -1,0 +1,145 @@
+.seoResult {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resultHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.copySuccess {
+  font-size: 16px;
+  color: var(--success-color);
+}
+
+.main-results {
+  font-family: "Arial", sans-serif;
+  line-height: 1.8;
+  color: #333;
+  padding: 3rem; /* Tương đương 30px */
+  background-color: #ffffff;
+  border-radius: 0.8rem; /* Tương đương 8px */
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1); /* Tương đương 2px, 10px */
+  font-size: 1.6rem; /* Tương đương 16px */
+}
+
+.main-results h1 {
+  font-size: 2.25rem; /* Tương đương 22.5px */
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+  font-weight: 700; /* Đậm nhất, thu hút sự chú ý */
+}
+
+.main-results h2 {
+  font-size: 2rem; /* Tương đương 20px */
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+  font-weight: 600; /* Đậm hơn một chút, nhưng nhẹ hơn h1 */
+}
+
+.main-results h3 {
+  font-size: 1.75rem; /* Tương đương 17.5px */
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+  font-weight: 600; /* Đậm vừa phải */
+}
+
+.main-results h4 {
+  font-size: 1.6rem; /* Tương đương 16px */
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+  font-weight: 500; /* Bằng trọng lượng mặc định */
+}
+
+.main-results p {
+  font-size: 1.6rem; /* Tương đương 16px */
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+  line-height: 1.8;
+}
+
+.main-results a {
+  font-size: 1.6rem; /* Tương đương 16px */
+  color: #4e90f0;
+  text-decoration: none;
+}
+
+.main-results a:hover {
+  text-decoration: underline;
+}
+
+.main-results code {
+  font-size: 1.6rem; /* Tương đương 16px */
+  background-color: #f7f7f7;
+  padding: 0.3rem 0.5rem; /* Tương đương 3px 5px */
+  border-radius: 0.4rem; /* Tương đương 4px */
+  color: #d14a3e;
+  font-family: "Courier New", monospace;
+}
+
+.main-results pre {
+  font-size: 1.6rem; /* Tương đương 16px */
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  padding: 2rem; /* Tương đương 20px */
+  border-radius: 0.8rem; /* Tương đương 8px */
+  overflow-x: auto;
+  font-family: "Courier New", monospace;
+}
+
+.main-results blockquote {
+  font-size: 1.6rem; /* Tương đương 16px */
+  border-left: 0.4rem solid #4caf50; /* Tương đương 4px */
+  padding-left: 2rem; /* Tương đương 20px */
+  font-style: italic;
+  color: #555;
+  margin: 1.5rem 0; /* Tương đương 15px */
+  background-color: #f9f9f9;
+}
+
+.main-results ul,
+.main-results ol {
+  font-size: 1.6rem; /* Tương đương 16px */
+  margin-left: 3rem; /* Tương đương 30px */
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+}
+
+.main-results li {
+  margin-bottom: 0.75rem; /* Tương đương 7.5px */
+}
+
+.main-results table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem; /* Tương đương 15px */
+}
+
+.main-results table th,
+.main-results table td {
+  padding: 1.5rem; /* Tương đương 15px */
+  font-size: 1.6rem; /* Tương đương 16px */
+  border: 0.1rem solid #ddd; /* Tương đương 1px */
+}
+
+.main-results table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.main-results table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.main-results img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.8rem; /* Tương đương 8px */
+  margin: 1.5rem 0; /* Tương đương 15px */
+}
+
+.placeholder {
+  font-size: 16px;
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}

@@ -1,0 +1,125 @@
+.patient-info-tabs {
+  border: 1px solid #0a0a0a;
+  padding: 0;
+  width: 100%;
+  background-color: #fffff0;
+}
+
+.patient-info-tabs .custom-tabs .nav-tabs {
+  border-bottom: none;
+}
+
+.patient-info-tabs .custom-tabs .nav-link {
+  border: 1px solid #000000;
+  background-color: #3c9b1f;
+  color: rgb(255, 255, 255);
+  margin-right: -1px;
+  border-radius: 0;
+}
+
+.patient-info-tabs .custom-tabs .nav-link.active {
+  background-color: #3199d1;
+  color: white;
+  border-color: #070707 #000000 #0b0b0b;
+}
+
+.patient-info-tabs .tab-content-area {
+  border: 1px solid #000000;
+  background-color: #eaf8df;
+  min-height: 200px; /* Bạn có thể tùy chỉnh chiều cao nội dung ở đây */
+}
+
+/* Tab 1 */
+
+.patient-info-tabs .patient-details {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.patient-info-tabs .patient-info-tabs .table {
+  margin-bottom: 0;
+}
+
+.patient-info-tabs.patient-info-tabs .table-bordered th,
+.table-bordered td {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+
+.patient-info-tabs .table th {
+  width: 20%;
+  background-color: #e1e1e1;
+  text-align: left;
+  color: rgb(88, 143, 15);
+}
+
+.patient-info-tabs .table td {
+  width: 30%;
+  text-align: left;
+}
+
+.patient-info-tabs .table-bordered {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* History container */
+
+.history-container .table {
+  width: 100%;
+  table-layout: fixed;
+  background-color: #baf6e8;
+}
+
+.history-container .table th,
+.history-container .table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.history-container .table thead th {
+  font-weight: bold;
+}
+
+.history-container .table td {
+  border-top: 1px solid #dee2e6;
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.payment-history-container {
+  .table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: #baf6e8;
+  }
+  .table th,
+  .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px;
+    font-weight: bold;
+  }
+  .table thead th {
+    font-weight: bold;
+  }
+  .table td {
+    border-top: 1px solid #dee2e6;
+  }
+
+  .wrapper {
+    padding: 20px;
+  }
+
+  .shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  }
+}

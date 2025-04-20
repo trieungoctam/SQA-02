@@ -1,0 +1,220 @@
+.examination-form-container {
+  margin-top: 3%;
+  background-color: #73a8bc;
+  border-radius: 10px;
+  padding: 5% 0 10% 0;
+  box-shadow: #000000;
+}
+
+.examination-form-container .input-box,
+.table-box {
+  height: 300px;
+  margin-left: 2%;
+}
+
+.examination-form-container .large-box {
+  max-height: 800px;
+  min-height: 800px;
+  margin-right: 2%;
+  box-shadow: inset;
+  overflow-y: auto;
+  font-size: large;
+}
+
+.examination-form-container .input-card {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 2%;
+}
+
+.input-card-header {
+  background-color: #dff0d8;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+}
+
+.input-card-header h5 {
+  margin: 0;
+  font-size: 14px;
+  color: #008000;
+  text-align: center;
+}
+
+.input-card-header .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.input-card-content {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: white;
+  border-radius: 0 0 4px 4px;
+  width: 100%;
+}
+
+/* medicine group */
+
+.medicine-group-container.selection-card {
+  width: 300px; /* Điều chỉnh chiều rộng theo nhu cầu */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 5%;
+}
+
+.medicine-group-container .selection-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dff0d8;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
+}
+
+.medicine-group-container .selection-card-header h5 {
+  margin: 0;
+  font-size: 30px;
+  color: #000000;
+}
+
+.medicine-group-container .selection-card-header .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.medicine-group-container .selection-card-content {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.medicine-group-container .selection-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.medicine-group-container .selection-list li {
+  padding: 8px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medicine-group-container .selection-list li.selected {
+  background-color: #3dff07;
+  font-weight: bold;
+}
+
+/* examination-form */
+.examination-container{
+}
+
+.examination-container input{
+  border: none; 
+  border-bottom: 2px solid #000; 
+  padding: 5px 0; 
+  outline: none; 
+  width: 70%; 
+  box-sizing: border-box; 
+}
+
+
+.examination-form-container .prescription-header {
+  text-align: center;
+}
+
+.examination-form-container .prescription-header h2 {
+  font-weight: bold;
+  color: #008080;
+}
+
+.examination-form-container .prescription-details {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.examination-form-container .prescription-details span {
+  font-weight: bold;
+}
+
+.examination-form-container .btn-group button {
+  font-weight: bold;
+}
+
+/* medicine list */
+
+.medicine-list-container.container {
+  font-family: Arial, sans-serif;
+  min-height: 400px;
+}
+
+.medicine-list-container .row {
+  margin-bottom: 10px;
+}
+
+.medicine-list-container .border-bottom {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.medicine-list-container .btn-close {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  color: #999;
+  font-size: 16px;
+}
+
+.medicine-list-container .btn-close:hover {
+  color: #333;
+}
+
+.medicine-list-container p {
+  margin: 0;
+}
+
+/* footer-examination-form */
+.footer-examination-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: large;
+}
+
+.footer-examination-form .left-col {
+  width: 50%;
+}
+
+.footer-examination-form .textarea-advance {
+  width: 100%;
+}
+
+.footer-examination-form .right-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+

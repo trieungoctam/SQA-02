@@ -1,0 +1,178 @@
+/* Phần tiêu đề */
+.advise-container .advise-container-search {
+  .section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .underline {
+    width: 50px;
+    height: 4px;
+    background-color: #444;
+    margin-top: 10px;
+  }
+
+  /* Phần tìm kiếm */
+  .search-section {
+    background-color: #007bff;
+  }
+
+  .search-box {
+    display: flex;
+    width: 50%;
+    max-width: 600px;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-input {
+    flex-grow: 1;
+    padding-left: 20px;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    height: 48px;
+  }
+
+  .search-input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .search-btn {
+    background-color: #fff;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-btn i {
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+}
+
+.advise-container .advise-container-blogs {
+  .advise-container-item {
+  }
+
+  .question-card {
+    z-index: 2; /* Đảm bảo thẻ câu hỏi nằm phía dưới */
+    border-radius: 30px;
+  }
+
+  .answer-card {
+    position: relative;
+    top: -30px; /* Dịch chuyển lên để đè thẻ câu hỏi */
+    z-index: 1; /* Thẻ câu trả lời nổi lên trên */
+    background-color: #e1e0e0; /* Màu nền nhẹ */
+    border-radius: 30px;
+  }
+
+  .answer-name {
+    margin-left: 5px;
+  }
+
+  .tags .badge {
+    font-size: 0.85rem;
+    margin-right: 5px;
+  }
+
+  .doctor-avatar img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-card-container {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .base-infor{
+    display: flex;
+  }
+  
+
+  .like-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fa-regular .fa-heart .fa-sm {
+    color: red;
+  }
+
+  .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 20px;
+  }
+
+  .card-body p {
+    margin-bottom: 0.5rem;
+  }
+
+  .card-body button {
+    align-items: end;
+  }
+
+  .answerBtn {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  }
+}
+
+.advise-container .create-advice-container {
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin-right: 20px;
+  }
+  .comment-box {
+    background-color: #3a8bd7;
+    color: #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+  }
+  .comment-input {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  .comment-input:focus {
+    border: none;
+    border-color: white;
+  }
+
+  .comment-icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .comment-icons img {
+    width: 24px;
+    height: 24px;
+    filter: invert(80%);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<aside th:insert="~{admin/common/headerAdmin :: admin-header-common}" />
+</head>
+
+<body>
+	<aside th:insert="~{admin/common/adminLeftPanel :: left-panel-common}" />
+
+	<!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+		<!-- Header-->
+		<aside
+			th:insert="~{admin/common/headerRightPanel :: header-rightPanel-common}" />
+		<!-- /#header -->
+		<!-- Content -->
+		<div class="content">
+
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<strong th:if="${schedule.id > 0}">Cập nhật lịch làm việc</strong>
+						<strong th:if="${schedule.id == null}">Thêm mới lịch làm
+							việc</strong>
+
+					</div>
+					<div class="card-body card-block">
+						<form th:action="@{/admin/addOrUpdateSchedule}" method="post"
+							th:object="${schedule}" class="form-horizontal">
+
+							<input type="hidden" th:field="${schedule.id}"
+								th:value="${schedule.id}" />
+
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Ngày
+										làm việc</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${schedule.date}" required type="date"
+										id="text-input" name="date" class="form-control"
+										th:min="${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}">
+									<p th:errors="*{date}" class="text-danger"
+										th:if="${#fields.hasErrors('date')}"></p>
+								</div>
+
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label class=" form-control-label">Trạng thái ngày nghỉ</label>
+								</div>
+								<div class="col col-md-9">
+									<div class="form-check-inline form-check">
+										<label for="inline-checkbox1" class="form-check-label ">
+											<input th:field="${schedule.isDayOff}"
+											th:checked="${schedule.isDayOff}" type="checkbox"
+											id="inline-checkbox1" name="isDayOff" value="true"
+											class="form-check-input">
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="row form-group">
+								<div class="col col-md-3">
+									<label for="text-input" class=" form-control-label">Chú
+										thích</label>
+								</div>
+								<div class="col-12 col-md-9">
+									<input th:field="${schedule.description}" required type="text"
+										id="text-input" name="description" class="form-control">
+
+								</div>
+
+							</div>
+
+
+							<div class="card-footer">
+								<button type="submit" class="btn btn-primary btn-sm">
+									<i class="fa fa-dot-circle-o"></i> Submit
+								</button>
+								<button type="reset" class="btn btn-danger btn-sm">
+									<i class="fa fa-ban"></i> Reset
+								</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<!-- /.content -->
+		<div class="clearfix"></div>
+		<!-- Footer -->
+		<aside th:insert="~{admin/common/footerAdmin :: footer-admin-common}" />
+
+		<!-- /.site-footer -->
+	</div>
+	<!-- /#right-panel -->
+
+	<!-- Scripts -->
+	<aside th:insert="~{admin/common/scriptCommon :: script-common}" />
+
+</body>
+</html>

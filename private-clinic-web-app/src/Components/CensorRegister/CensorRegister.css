@@ -1,0 +1,106 @@
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    max-width: 100%;
+}
+
+/* Các item trong filter */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    position: relative;
+}
+
+.filter-item:last-child {
+    border-right: none;
+}
+
+/* Icon trước input và select */
+.filter-item i {
+    margin-right: 8px;
+    color: #bfcad3;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+
+/* Input và select cơ bản */
+.filter-item input,
+.filter-item select {
+    border: none;
+    padding: 10px;
+    width: 100%;
+    background-color: transparent;
+    color: #060a0d;
+    font-size: 14px;
+    outline: none;
+    padding-left: 30px; /* Để tránh bị đè lên bởi icon */
+}
+
+/* Ghi chú nhỏ */
+.filter-item .note {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+/* Button Search */
+.button-box button {
+    background-color: #a67b5b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    align-self: center;
+}
+
+.button-box button:hover {
+    background-color: #8b6147;
+}
+/* List */
+
+.student-avathar {
+    border: 1px solid var(--gray);
+    border-radius: 50px;
+    height: 3rem;
+    width: 3rem;
+  }
+  .passed {
+    color: green;
+    background-color: rgba(185, 255, 218, 0.4);
+    padding: 6px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+  }
+  .failed {
+    color: red;
+    background-color: rgba(241, 172, 172, 0.25);
+    padding: 6px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+  }
+  .wrapper {
+    background-color: #fdfdfd;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.16);
+  }
+  .custom-dropdown-toggle {
+    border: none !important;
+    background: none !important;
+  }

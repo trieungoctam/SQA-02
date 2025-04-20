@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<aside th:insert="~{admin/common/headerAdmin :: admin-header-common}" />
+
+</head>
+
+<body>
+	<aside th:insert="~{admin/common/adminLeftPanel :: left-panel-common}" />
+
+	<!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
+		<!-- Header-->
+		<aside
+			th:insert="~{admin/common/headerRightPanel :: header-rightPanel-common}" />
+		<!-- /#header -->
+		<!-- Content -->
+		<div class="content">
+			<div class="animated fadeIn">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<h2 class="heading  text text-primary text-center m-3">
+									THỐNG KÊ DOANH THU THEO NĂM
+								</h2>
+								<form th:action=@{/admin/statsByRevenue} class="form-container">
+									 <span><strong> Năm : </strong> <input type="number" min="2000" max="3000"
+										name="yearlyRevenue" th:value="${yearlyRevenue}">
+									</span>
+									<button type="submit" class="btn btn-primary">Lọc</button>
+
+								</form>
+								<canvas id="revenue-stats-chart"></canvas>
+								<h4>Tổng cộng : <strong id="total-revenue" class="text text-danger"></strong> đồng</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.content -->
+		<div class="clearfix"></div>
+		<!-- Footer -->
+		<aside th:insert="~{admin/common/footerAdmin :: footer-admin-common}" />
+
+		<!-- /.site-footer -->
+	</div>
+	<!-- /#right-panel -->
+
+	<!-- Scripts -->
+	<script th:inline="javascript"> // important
+	var revenueStats = `[[${revenueStats}]]`;
+	
+	let labels = [];
+	let data = [];
+	
+	revenueStats = JSON.parse(revenueStats);
+	
+	revenueStats.forEach(function(s2) {
+	    	labels.push(s2.month)
+			data.push(s2.revenue)
+	 });
+	
+
+	 function drawChart(ctx,labels, labelDatasets, data) {
+		 new Chart(ctx, {
+		   type: "line",
+		   data: {
+		     labels: labels,
+		     datasets: [{
+		       label: labelDatasets,
+		       data: data,
+		       fill: false,
+		       backgroundColor:"rgba(101,0,255,1.0)",
+		       borderColor: "blue", 
+		     }]
+		   },
+		   options: {
+		     legend: {display: false}
+		   }
+		 });
+	    }
+	
+	 window.onload = () => {
+	        const ctx1 = document.getElementById('revenue-stats-chart');
+	        drawChart(ctx1, labels, 'Thống kê doanh thu theo năm', data);
+	        
+	        let totalRevenue = revenueStats.reduce((accumulator, item) => {
+	        	return accumulator + item.revenue;
+			}, 0)
+						
+			document.getElementById('total-revenue').innerHTML = totalRevenue.toLocaleString("vi-VN")
+	       
+	}
+	
+	</script>
+
+	<aside th:insert="~{admin/common/scriptCommon :: script-common}" /> 
+
+</body>
+</html>
