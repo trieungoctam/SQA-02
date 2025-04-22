@@ -45,7 +45,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC1: Tạo JWT token với email hợp lệ")
+    @DisplayName("TCJWT1: Tạo JWT token với email hợp lệ")
     void generateTokenLogin_ValidEmail_ReturnsToken() {
         String token = jwtService.generateTokenLogin("test@example.com");
         assertNotNull(token);
@@ -53,7 +53,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC2: Xử lý khi email null")
+    @DisplayName("TCJWT2: Xử lý khi email null")
     void generateTokenLogin_NullEmail_ThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             jwtService.generateTokenLogin(null);
@@ -61,7 +61,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC3: Xử lý khi email rỗng")
+    @DisplayName("TCJWT3: Xử lý khi email rỗng")
     void generateTokenLogin_EmptyEmail_ThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             jwtService.generateTokenLogin("");
@@ -69,7 +69,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC4: Lấy claims từ token hợp lệ")
+    @DisplayName("TCJWT4: Lấy claims từ token hợp lệ")
     void getClaimsFromToken_ValidToken_ReturnsClaims() throws ParseException {
         JWTClaimsSet claims = jwtService.getClaimsFromToken(validToken);
         assertNotNull(claims);
@@ -77,7 +77,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC5: Xử lý token không hợp lệ")
+    @DisplayName("TCJWT5: Xử lý token không hợp lệ")
     void getClaimsFromToken_InvalidToken_ThrowsException() {
         assertThrows(ParseException.class, () -> {
             jwtService.getClaimsFromToken(invalidToken);
@@ -85,7 +85,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC6: Xử lý token rỗng")
+    @DisplayName("TCJWT6: Xử lý token rỗng")
     void getClaimsFromToken_EmptyToken_ThrowsException() {
         assertThrows(ParseException.class, () -> {
             jwtService.getClaimsFromToken("");
@@ -93,7 +93,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC7: Xử lý token không có Bearer")
+    @DisplayName("TCJWT7: Xử lý token không có Bearer")
     void getClaimsFromToken_TokenWithoutBearer_ReturnsClaims() throws ParseException {
         JWTClaimsSet claims = jwtService.getClaimsFromToken(tokenWithoutBearer);
         assertNotNull(claims);
@@ -101,7 +101,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC8: Lấy thời gian hết hạn từ token")
+    @DisplayName("TCJWT8: Lấy thời gian hết hạn từ token")
     void getExpirationDateFromToken_ValidToken_ReturnsDate() throws ParseException {
         Date expiration = jwtService.getExpirationDateFromToken(validToken);
         assertNotNull(expiration);
@@ -109,7 +109,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC9: Xử lý token không có expiration")
+    @DisplayName("TCJWT9: Xử lý token không có expiration")
     void getExpirationDateFromToken_InvalidToken_ThrowsException() {
         assertThrows(ParseException.class, () -> {
             jwtService.getExpirationDateFromToken(invalidToken);
@@ -117,7 +117,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC10: Xử lý token rỗng khi lấy expiration")
+    @DisplayName("TCJWT10: Xử lý token rỗng khi lấy expiration")
     void getExpirationDateFromToken_EmptyToken_ThrowsException() {
         assertThrows(ParseException.class, () -> {
             jwtService.getExpirationDateFromToken("");
@@ -125,35 +125,35 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC11: Lấy email từ token")
+    @DisplayName("TCJWT11: Lấy email từ token")
     void getEmailFromToken_ValidToken_ReturnsEmail() {
         String email = jwtService.getEmailFromToken(validToken);
         assertEquals("test@example.com", email);
     }
 
     @Test
-    @DisplayName("TC12: Xử lý token không có email")
+    @DisplayName("TCJWT12: Xử lý token không có email")
     void getEmailFromToken_InvalidToken_ReturnsNull() {
         String email = jwtService.getEmailFromToken(invalidToken);
         assertNull(email);
     }
 
     @Test
-    @DisplayName("TC13: Xử lý token rỗng khi lấy email")
+    @DisplayName("TCJWT13: Xử lý token rỗng khi lấy email")
     void getEmailFromToken_EmptyToken_ReturnsNull() {
         String email = jwtService.getEmailFromToken("");
         assertNull(email);
     }
 
     @Test
-    @DisplayName("TC14: Kiểm tra token còn hiệu lực")
+    @DisplayName("TCJWT14: Kiểm tra token còn hiệu lực")
     void isTokenExpired_ValidToken_ReturnsFalse() throws ParseException {
         boolean isExpired = jwtService.isTokenExpired(validToken);
         assertFalse(isExpired);
     }
 
     @Test
-    @DisplayName("TC15: Xử lý token không hợp lệ khi kiểm tra hết hạn")
+    @DisplayName("TCJWT15: Xử lý token không hợp lệ khi kiểm tra hết hạn")
     void isTokenExpired_InvalidToken_ThrowsException() {
         assertThrows(ParseException.class, () -> {
             jwtService.isTokenExpired(invalidToken);
@@ -161,7 +161,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC16: Xử lý token rỗng khi kiểm tra hết hạn")
+    @DisplayName("TCJWT16: Xử lý token rỗng khi kiểm tra hết hạn")
     void isTokenExpired_EmptyToken_ThrowsException() {
         assertThrows(ParseException.class, () -> {
             jwtService.isTokenExpired("");
@@ -169,28 +169,28 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("TC17: Validate token thành công")
+    @DisplayName("TCJWT17: Validate token thành công")
     void validateTokenLogin_ValidToken_ReturnsTrue() throws ParseException {
         boolean isValid = jwtService.validateTokenLogin(validToken);
         assertTrue(isValid);
     }
 
     @Test
-    @DisplayName("TC18: Xử lý token không hợp lệ")
+    @DisplayName("TCJWT18: Xử lý token không hợp lệ")
     void validateTokenLogin_InvalidToken_ReturnsFalse() throws ParseException {
         boolean isValid = jwtService.validateTokenLogin(invalidToken);
         assertFalse(isValid);
     }
 
     @Test
-    @DisplayName("TC19: Xử lý token rỗng")
+    @DisplayName("TCJWT19: Xử lý token rỗng")
     void validateTokenLogin_EmptyToken_ReturnsFalse() throws ParseException {
         boolean isValid = jwtService.validateTokenLogin("");
         assertFalse(isValid);
     }
 
     @Test
-    @DisplayName("TC20: Xử lý token null")
+    @DisplayName("TCJWT20: Xử lý token null")
     void validateTokenLogin_NullToken_ReturnsFalse() throws ParseException {
         boolean isValid = jwtService.validateTokenLogin(null);
         assertFalse(isValid);

@@ -89,7 +89,7 @@ class ApiUserRestControllerTest {
     }
 
     @Test
-    @DisplayName("TC1: Đăng ký thành công")
+    @DisplayName("TCAPI1: Đăng ký thành công")
     void register_Success() throws Exception {
         when(userService.isValidGmail(mockRegisterDto.getEmail())).thenReturn(true);
         when(userService.isValidPhoneNumber(mockRegisterDto.getPhone())).thenReturn(true);
@@ -105,7 +105,7 @@ class ApiUserRestControllerTest {
     }
 
     @Test
-    @DisplayName("TC2: Đăng ký với email không hợp lệ")
+    @DisplayName("TCAPI2: Đăng ký với email không hợp lệ")
     void register_InvalidEmail() throws Exception {
         when(userService.isValidGmail(mockRegisterDto.getEmail())).thenReturn(false);
         

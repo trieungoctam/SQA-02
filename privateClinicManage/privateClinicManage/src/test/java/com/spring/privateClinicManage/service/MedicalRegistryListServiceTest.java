@@ -49,7 +49,7 @@ class MedicalRegistryListServiceTest {
 
     // ===================== findByScheduleAndStatusIsApproved =====================
     @Test
-    @DisplayName("TC1: Đảm bảo trả về đúng danh sách phiếu khám theo lịch và trạng thái")
+    @DisplayName("TCMRL1: Đảm bảo trả về đúng danh sách phiếu khám theo lịch và trạng thái")
     void findByScheduleAndStatusIsApproved_HasData() {
         List<MedicalRegistryList> mockList = Arrays.asList(new MedicalRegistryList(), new MedicalRegistryList());
         when(medicalRegistryListRepository.findByScheduleAndStatusIsApproved(2024, 6, 1, validStatus))
@@ -60,7 +60,7 @@ class MedicalRegistryListServiceTest {
     }
 
     @Test
-    @DisplayName("TC2: Đảm bảo trả về danh sách rỗng")
+    @DisplayName("TCMRL2: Đảm bảo trả về danh sách rỗng")
     void findByScheduleAndStatusIsApproved_NoData() {
         when(medicalRegistryListRepository.findByScheduleAndStatusIsApproved(1999, 1, 1, validStatus))
             .thenReturn(Collections.emptyList());
