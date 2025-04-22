@@ -139,7 +139,7 @@ export default function CencorRegister() {
       // if (userList.length < 1) getAllUsers();
       setIsCanceled(false);
 
-      if (urs !== null && urs.statusIsApproved.status === "PAYMENTPHASE2") {
+      if (urs !== null && urs.statusIsApproved?.status === "PAYMENTPHASE2") {
         getMEByMrlId(urs.id);
       }
     }
@@ -364,19 +364,19 @@ export default function CencorRegister() {
                     <td>
                       {dayjs(mrl.schedule.date).format("DD-MM-YYYY HH:mm:ss")}
                     </td>
-                    <td>{mrl.statusIsApproved.note}</td>
+                    <td>{mrl.statusIsApproved?.note}</td>
                     <td>
                       <span
                         className={`badge bg-${getStatusClass(
-                          mrl.statusIsApproved.status
+                          mrl.statusIsApproved?.status
                         )}`}
                       >
-                        {mrl.statusIsApproved.status}
+                        {mrl.statusIsApproved?.status}
                       </span>
                     </td>
                     <td>
-                      {(mrl.statusIsApproved.status === "PAYMENTPHASE1" ||
-                        mrl.statusIsApproved.status === "PAYMENTPHASE2") && (
+                      {(mrl.statusIsApproved?.status === "PAYMENTPHASE1" ||
+                        mrl.statusIsApproved?.status === "PAYMENTPHASE2") && (
                         <button
                           className="btn btn-danger btn-sm"
                           onClick={() => {
