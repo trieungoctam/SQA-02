@@ -40,7 +40,7 @@ public class SpringSecurityConfig {
 	public SecurityFilterChain springFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/login/**", "/oauth2/**", "/error", "/public/resources/**",
-						"/qr/**", "/ws/**")
+						"/qr/**", "/ws/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html")
 				.permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/oauth2/current-user/").authenticated()
