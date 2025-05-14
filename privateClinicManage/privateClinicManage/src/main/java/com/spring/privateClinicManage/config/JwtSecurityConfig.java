@@ -57,7 +57,9 @@ public class JwtSecurityConfig {
 	@Bean
 	public SecurityFilterChain jwtSecurityfilterChain(HttpSecurity http) throws Exception {
 
-		http.securityMatcher("/api/**").authorizeHttpRequests(auth -> auth
+		http.securityMatcher("/api/**", "/swagger-ui/**", "/v3/api-docs/**").authorizeHttpRequests(auth -> auth
+
+				.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
 
 				.requestMatchers(HttpMethod.GET,
 						"/api/users/getAllStatusIsApproved/",

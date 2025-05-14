@@ -42,6 +42,21 @@ public class MedicalRegistryListServiceImpl implements MedicalRegistryListServic
 	@Override
 	@Transactional
 	public void saveMedicalRegistryList(MedicalRegistryList medicalRegistryList) {
+		// Verify that the statusIsApproved is set
+		if (medicalRegistryList.getStatusIsApproved() == null) {
+			throw new IllegalArgumentException("StatusIsApproved cannot be null when saving MedicalRegistryList");
+		}
+		
+		// Make sure schedule and user are not null
+		if (medicalRegistryList.getSchedule() == null) {
+			throw new IllegalArgumentException("Schedule cannot be null when saving MedicalRegistryList");
+		}
+		
+		if (medicalRegistryList.getUser() == null) {
+			throw new IllegalArgumentException("User cannot be null when saving MedicalRegistryList");
+		}
+		
+		// Persist the entity
 		medicalRegistryListRepository.save(medicalRegistryList);
 	}
 
