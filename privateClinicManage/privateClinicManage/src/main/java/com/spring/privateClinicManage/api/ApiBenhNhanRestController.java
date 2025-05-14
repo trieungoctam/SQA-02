@@ -116,6 +116,9 @@ public class ApiBenhNhanRestController {
 					HttpStatus.UNAUTHORIZED);
 
 		StatusIsApproved statusIsApproved = statusIsApprovedService.findByStatus("CHECKING");
+		if (statusIsApproved == null) {
+			return new ResponseEntity<>("Trạng thái 'CHECKING' không tồn tại trong hệ thống", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
 		Integer countMedicalRegistryList = medicalRegistryListService
 				.countMRLByUserAndScheduleAndisCancelledAndStatusIsApproved(currentUser, schedule,
@@ -135,14 +138,16 @@ public class ApiBenhNhanRestController {
 		medicalRegistryList.setName(registerScheduleDto.getName());
 		medicalRegistryList.setFavor(registerScheduleDto.getFavor());
 		medicalRegistryList.setSchedule(schedule);
+		medicalRegistryList.setQrUrl(null);
+		medicalRegistryList.setIsVoucherTaken(false);
 
+		// Save the medical registry list
 		medicalRegistryListService.saveMedicalRegistryList(medicalRegistryList);
 
 		messagingTemplate.convertAndSend("/notify/registerContainer/",
 				medicalRegistryList);
 
 		return new ResponseEntity<>(medicalRegistryList, HttpStatus.CREATED);
-
 	}
 
 	@GetMapping(value = "/user-register-schedule-list/")

@@ -251,47 +251,47 @@ export default function UserRegisterScheduleList() {
                         {dayjs(urs.schedule.date).format("DD-MM-YYYY HH:mm:ss")}
                       </div>
                       <div className="col col-5" data-label="Status Register">
-                        {urs.statusIsApproved.status}
+                        {urs.statusIsApproved?.status || "Chưa xác định"}
                       </div>
                       <div className="col col-6" data-label="Note">
-                        {urs.statusIsApproved.note}
+                        {urs.statusIsApproved?.note || ""}
                       </div>
-                      {urs.statusIsApproved.status !== "PAYMENTPHASE1" &&
-                      urs.statusIsApproved.status !== "PAYMENTPHASE2" ? (
+                      {urs.statusIsApproved && urs.statusIsApproved.status !== "PAYMENTPHASE1" &&
+                        urs.statusIsApproved.status !== "PAYMENTPHASE2" &&
+                        urs.statusIsApproved.status !== "SUCCESS" &&
+                        urs.statusIsApproved.status !== "FAILED" &&
+                        urs.statusIsApproved.status !== "CANCELED" && (
                         <button
-                          onClick={() => handleOpenDeleteConfirmForm(urs.id)}
-                          className={`col col-7 btn ${
+                          disabled={
+                            urs.statusIsApproved && 
                             urs.statusIsApproved.status !== "CHECKING"
-                              ? "btn-secondary disabled"
-                              : "btn-danger"
-                          }`}
-                          data-label="Canceled Register"
+                          }
+                          onClick={() =>
+                            handleOpenDeleteConfirmForm(urs.id)
+                          }
+                          className="btn text-white btn-sm btn-danger ms-1"
                         >
-                          Hủy lịch khám
+                          Hủy
                         </button>
-                      ) : (
-                        <>
-                          {urs.statusIsApproved.status === "PAYMENTPHASE1" && (
-                            <button
-                              className="col col-7 btn btn-success"
-                              onClick={() => {
-                                handleOpenPaymentPhase1Form(urs);
-                              }}
-                            >
-                              Thanh toán lấy mã QR
-                            </button>
-                          )}
-                          {urs.statusIsApproved.status === "PAYMENTPHASE2" && (
-                            <button
-                              className="col col-7 btn btn-success"
-                              onClick={() => {
-                                handleOpenPaymentPhase2Form(urs);
-                              }}
-                            >
-                              Thanh toán lấy thuốc
-                            </button>
-                          )}
-                        </>
+                      )}
+                      {urs.statusIsApproved && urs.statusIsApproved.status === "PAYMENTPHASE1" && (
+                        <button
+                          type="button"
+                          onClick={() => handleOpenPaymentPhase1Form(urs)}
+                          className="btn text-white btn-sm btn-success ms-1"
+                        >
+                          Thanh toán
+                        </button>
+                      )}
+
+                      {urs.statusIsApproved && urs.statusIsApproved.status === "PAYMENTPHASE2" && (
+                        <button
+                          type="button"
+                          onClick={() => handleOpenPaymentPhase2Form(urs)}
+                          className="btn text-white btn-sm btn-success ms-1"
+                        >
+                          Thanh toán
+                        </button>
                       )}
                     </li>
                   );
